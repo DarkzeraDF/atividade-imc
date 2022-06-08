@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora IMC</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <div>
+    <form>
+        <fieldset>
+            <legend>Calculadora de IMC</legend>
+        <label for="peso1">Digite o peso: </label>
+        <input type="number" id="peso1" name="peso1">
+        <br>
+        <label for="altura1">Digite a altura: </label>
+        <input type="number" id="altura1" name="altura1">
+        <br>
+        <div class="btn">
+        <input id="btn" type="button" onclick="calcularimc();" value="Calcular IMC">
+        </div>
+        <p>IMC:
+            <span id="imc">
+    
+            </span>
+        </p>
+    
+        <p>Situação:
+            <span id="sit">
+    
+            </span>
+        </p>
+    </fieldset>
+    </form>
+    
+    </div>
+
+    
+    <script>
+        function calcularimc(){
+            let p1 = parseFloat (document.getElementById ("peso1").value)
+            let a1 = parseFloat (document.getElementById ("altura1").value)
+            console.log ('peso:'+ p1);
+            console.log ('altura:'+ a1);
+
+            let imcmedia= (p1 / (a1 * a1)).toFixed(0);
+            console.log ('imc: '+ imcmedia);
+            
+            if (imcmedia<1){
+                imcmedia = 'Invalido'
+            }
+            if (a1 == '0'){
+                alert ('Dado de altura invalido, preencha corretamente!!')
+            }
+            
+            if (p1 < '0' || a1 < '0' ){
+                alert ('Por favor, informar somente dados positivos')
+            }
+            document.getElementById('imc').innerHTML = imcmedia;
+            
+            let situacao
+
+            if (imcmedia<1){
+                situacao = 'Invalido'
+            }
+            else if (imcmedia<=20){
+                 situacao = 'Abaixo do peso';
+                
+            } else if (imcmedia<=25) {
+                 situacao = 'Normal';
+                
+            } else if (imcmedia<=30) {
+                 situacao = 'Sobrepeso';
+                
+            } else if (imcmedia<=35) {
+                 situacao = 'Obesidade 1';
+                
+            } else if (imcmedia<=40) {
+                 situacao = 'Obesidade 2';   
+                
+            } else if (imcmedia>40) {
+                 situacao = 'Obesidade 3';   
+                
+            }
+            document.getElementById('sit').innerHTML = situacao
+        }
+        
+        
+    </script>
+</body>
+</html>
